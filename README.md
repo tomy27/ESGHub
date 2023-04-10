@@ -7,6 +7,7 @@ My CS50W final project is a web application in that you can search ESG data from
 ### Languanges and frameworks:
 * Python
 * Django
+* SQL
 * HTML
 * CSS
 * Javascript
