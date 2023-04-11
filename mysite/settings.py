@@ -111,7 +111,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://tomy27-cuddly-pancake-9w7ww5rq7v9h6vj-8000.preview.app.github.dev']
+CSRF_TRUSTED_ORIGINS = ['!!! IP address here !!!']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
