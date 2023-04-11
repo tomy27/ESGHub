@@ -2,48 +2,19 @@
 # ESG Hub
 ### Video Demo:  <URL https://youtu.be/TQQ92mCBa_g>
 ### Description:
-My CS50W final project is a web application in that you can search ESG data from different data providers. It also provide a detailed chart view about the different topics of ESG and basic financial and market data, too.
+ESG Hub is a web application in that you can search ESG data from different data providers. It also provide a detailed chart view about the different topics of ESG and basic financial and market data, too.
 
 ### Languanges and frameworks:
 * Python
 * Django
-* SQL
+* SQLite
 * HTML
 * CSS
 * Javascript
 * Bootstrap
 
 ### Distinctiveness and Complexity:
-My final project was made totally from scratch. The django project and app was made exclusively for this project and was not copied from a previous project. I wanted to make the whole project as a new, so I had to configure the django the way my project required. I considered and tried the use of websockets with django channels and daphne, but I decided to stick with the traditional http requests for this projects, because I used the online Codespace for coding and the websocket connection was a bit unstable. And the content of the site not necessary need that real-time experience that websocket can offer.
-
-Besides this, the topic of the site (ESG and financial data visualization) is distinct from the previous projects.The previous project during the course was more functionality focused, but my project also emphasizes the frontend design. I used pure CSS+Javascript to make the ESG data gauge updated accordingly. The gauge changes rotation angle and color as well. For the detailed mixed chart I used a free js library (Charts.js). The data are exchanged in JSON packages with lot of information which I had to extract from the JSON package to process.
-
-Frontend uses Bootstrap grid system. It also contains an embedded video from Youtube (on the What is ESG? site). The search bar gives you automatic result suggestions after you type in at least 3 letters.
-
-One of the database contains almost 6000 entries which is way more than anything in previous projects. It contains list of companies with IDs. It was tricky to upload this amount of data, and needed to use the django built-in bulk_create function for this with a specific batch size. (the upload was not made with a plain iteration one-by-one)
-
-My application use multiple API calls to provide data to the frontend. The ESG data comes from ESG Analytics based on their database (more on this in the hint section). And the financial and market data comes from Alpha Vantage API. Their both are free APIs with limited usage possible. So I had to overcome this with data caching in the database (please find more information below). The detailed ESG database can be get through a http get request.
-
-### Files:
-##### mysite folder
-settings.py contains the settings of the project, inlcuding installed apps, CSRF_TRUSTED_ORIGIN which needed to be able to use django admin site.
-
-urls.py contains all the urls, included the home ursl.py
-
-##### home folder
-The **static folder** where the CSS, Javascript and media files live. I made 3 separate JS file for the different view/HTML render. The name contains script prefix and the name of the HTML file afterwards to distinguish them. Since there are not that many files and media here I did not made different folders for them, but in a real world application it is recommended. I left the stock.csv file here. The content of this csv was uploaded into a django model called Database. The code for uploading this csv is commented out in the views.py 'query' function.
-
-The **template folder** where the html files live. The layout contains the skeleton of the site with header, footer and body. It is extended later with the 3 different views. Index is for the landing page, result is for displaying the result of the query (ESG and financial data). The what_is_esg is short information site about ESG with 
-The app 'home' contains the
-
-**root**
-admin.py includes the models for modification and supervision.
-
-models.py contains 3 models (Datababse, DataDetails, DataExt). Database contains almost 6000 entries, it is a list with company names an IDs. It provide information for automatic search result suggestions for the user. The other two database (DataDetails and DataExt) are only for storing the previously searched companies ESG data for caching purposes. (more on this below).
-
-urls.py contains all the available path for this project.
-
-views.py where all the html rendering, data processing, database queries and API calls are managed.
+The django project and app was made exclusively for this project and was not copied from a previous project. I wanted to make the whole project as a new, so I had to configure the django the way my project required. I considered and tried the use of websockets with django channels and daphne, but I decided to stick with the traditional http requests for this projects, because the content of the site not necessary need that real-time experience that websocket can offer. I used pure CSS+Javascript to make the ESG data gauge updated accordingly. The gauge changes rotation angle and color as well. For the detailed mixed chart I used a js library (Charts.js). The data are exchanged in JSON packages with lot of information which I had to extract from the JSON package to process. Frontend uses Bootstrap grid system. It also contains an embedded video from Youtube (on the What is ESG? site). The search bar gives you automatic result suggestions after you type in at least 3 letters. One of the database contains almost 6000 entries which is way more than anything in previous projects. It contains list of companies with IDs. It was tricky to upload this amount of data, and needed to use the django built-in bulk_create function for this with a specific batch size (the upload was not made with a plain iteration one-by-one). The application use multiple API calls to provide data to the frontend. The ESG data comes from ESG Analytics based on their database (more on this in the hint section). And the financial and market data comes from Alpha Vantage API. Their both are free APIs with limited usage possible. So I had to overcome this with data caching in the database (please find more information below). The detailed ESG database can be get through a http get request.
 
 ### Walkthrough of useage:
 You start your journey on the main, landing page. It has a header with a navbar. And footer with informations. The home button takes you back here. The What is ESG? button goes to a short information page where you can learn about ESG and also view an embedded video about it.
@@ -74,8 +45,26 @@ The stock price and financial data comes from Alpha Vantage. This is also a free
 
 In a real world application I would choose a more reliable source of ESG data (for example directly from MSCI), but it is barely available for an individual person. Or another approach would be to build a proper database of companies and ESG data.
 
-### Acknowledgment:
-Thank you CS50 crew for this awesome experience!
+### Files:
+##### mysite folder
+settings.py contains the settings of the project, inlcuding installed apps, CSRF_TRUSTED_ORIGIN which needed to be able to use django admin site.
+
+urls.py contains all the urls, included the home ursl.py
+
+##### home folder
+The **static folder** where the CSS, Javascript and media files live. I made 3 separate JS file for the different view/HTML render. The name contains script prefix and the name of the HTML file afterwards to distinguish them. Since there are not that many files and media here I did not made different folders for them, but in a real world application it is recommended. I left the stock.csv file here. The content of this csv was uploaded into a django model called Database. The code for uploading this csv is commented out in the views.py 'query' function.
+
+The **template folder** where the html files live. The layout contains the skeleton of the site with header, footer and body. It is extended later with the 3 different views. Index is for the landing page, result is for displaying the result of the query (ESG and financial data). The what_is_esg is short information site about ESG with 
+
+**root**
+admin.py includes the models for modification and supervision.
+
+models.py contains 3 models (Datababse, DataDetails, DataExt). Database contains almost 6000 entries, it is a list with company names an IDs. It provide information for automatic search result suggestions for the user. The other two database (DataDetails and DataExt) are only for storing the previously searched companies ESG data for caching purposes. (more on this below).
+
+views.py where all the html rendering, data processing, database queries and API calls are managed.
+
+
+
 
 
 
