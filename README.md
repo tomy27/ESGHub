@@ -1,6 +1,5 @@
 
 # ESG Hub
-### Video Demo:  <URL https://youtu.be/TQQ92mCBa_g>
 ### Description:
 ESG Hub is a web application in that you can search ESG data from different data providers. It also provide a detailed chart view about the different topics of ESG and basic financial and market data, too.
 
@@ -54,7 +53,7 @@ urls.py contains all the urls, included the home ursl.py
 ##### home folder
 The **static folder** where the CSS, Javascript and media files live. I made 3 separate JS file for the different view/HTML render. The name contains script prefix and the name of the HTML file afterwards to distinguish them. Since there are not that many files and media here I did not made different folders for them, but in a real world application it is recommended. I left the stock.csv file here. The content of this csv was uploaded into a django model called Database. The code for uploading this csv is commented out in the views.py 'query' function.
 
-The **template folder** where the html files live. The layout contains the skeleton of the site with header, footer and body. It is extended later with the 3 different views. Index is for the landing page, result is for displaying the result of the query (ESG and financial data). The what_is_esg is short information site about ESG with 
+The **template folder** where the html files live. The layout contains the skeleton of the site with header, footer and body. It is extended later with the 3 different views. Index is for the landing page, result is for displaying the result of the query (ESG and financial data). The what_is_esg is short information site about ESG.
 
 **root**
 admin.py includes the models for modification and supervision.
