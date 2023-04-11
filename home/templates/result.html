@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="container-fluid pt-3 search_bar">
+        <form action="{% url 'query' %}" method="get" class="w-50 mx-auto">
+            <div class="input-group">
+                <div class="form-floating mb-3 text-center">
+                    <input type="text" class="form-control" id="search_field" placeholder="company name or symbol" name="q" aria-label="" aria-describedby="button-addon2" required>
+                    <label for="search_field">Search for company</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="container text-center">
+        <h1>
+            ESG ratings of {{ company }}
+            <small class="text-body-secondary">({{ stockData.symbol }})</small>
+        </h1>
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col col-md-3">
+                    <div class="d-inline">Share price: $ {{ stockData.close }}</div>
+                    <div id="priceChangeArrowDown" class="d-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                        </svg>
+                    </div>
+                    <div id="priceChangeArrowUp" class="d-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-caret-up-fill" viewBox="0 0 16 16" id="priceChangeArrowUp">
+                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                        </svg>
+                    </div>
+                    <div class="d-inline" id="stockChange">{{ stockData.change }}</div>
+                </div>
+                <div class="col col-md-3">
+                    <p>Market Cap: $ {{ stockData.marketcap }} bn</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container justify-content-center text-center">
+        <div class="row">
+            <div class="col border p-2 m-2 shadow mb-2 bg-body rounded">
+                <p class="fs-1"><strong id="msci_score">{{ msci }}</strong></p>
+                <div class="d-flex justify-content-center pt-3">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="m-2 p-2 border" id="th-1">CCC</th>
+                                <th class="m-2 p-2 border" id="th-2">B</th>
+                                <th class="m-2 p-2 border" id="th-3">BB</th>
+                                <th class="m-2 p-2 border" id="th-4">BBB</th>
+                                <th class="m-2 p-2 border" id="th-5">A</th>
+                                <th class="m-2 p-2 border" id="th-6">AA</th>
+                                <th class="m-2 p-2 border" id="th-7">AAA</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center p-2 pt-5 mt-4">
+                    {% if msci_link %}
+                        <p>Data provider: <a href={{ msci_link }} target="blank">MSCI</a></p>
+                    {% else %}
+                        <p>Data provider: MSCI</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col border p-2 m-2 shadow mb-2 bg-body rounded">
+                <p class="fs-1"><strong id="snp_score">{{ snp }}</strong><span class="text1">/100</span></p>
+                <div class="d-flex justify-content-center">
+                    <div class="gauge">
+                        <div class="gauge_body">
+                            <div class="gauge_fill"></div>
+                            <div class="gauge_cover"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center p-2 pt-2">
+                    {% if snp_link %}
+                        <p>Data provider: <a href={{ snp_link }} target="blank">S&P Global</a></p>
+                    {% else %}
+                        <p>Data provider: S&P Global</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">Last update: {{ update }}</div>
+        </div>
+    </div>
+
+    <div class="container p-2 d-none d-md-block">
+        <div class="d-none" id="stockId">
+            {{ cid }}
+        </div>
+        <canvas id="myChart" style="width:100%;max-height: 350px; padding-right: 20px;"></canvas>
+    </div>
+
+
+    {% block script %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>
+        <script src="{% static 'scriptResult.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+    {% endblock %}
+
+{% endblock %}

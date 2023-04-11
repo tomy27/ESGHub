@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="container-fluid text-center p-4">
+        <h1>What is ESG?</h1>
+        <h4>A management and analysis framework to understand and measure how sustainably an organization is operating.</h4>
+        <div class="container text-start p-3 pt-4">
+            <p>ESG is a framework that helps stakeholders understand how an organization is managing risks and opportunities related to environmental, social, and governance criteria (sometimes called ESG factors). ESG is an acronym for <strong>Environmental, Social, and Governance</strong>. ESG takes the holistic view that sustainability extends beyond just environmental issues.</p>
+            <p>While the term ESG is often used in the context of investing, stakeholders include not just the investment community but also customers, suppliers, and employees, all of whom are increasingly interested in how sustainable an organization’s operations are.</p>
+        </div>
+    </div>
+    <div class="container col-xxl-8">
+        <div class="row align-items-center border text-bg-secondary">
+            <div class="col-xs-12 col-lg-6 p-2">
+                <h4 class="p-2">Key takeaways</h4>
+                <ul>
+                    <li><p>ESG is a framework that helps stakeholders understand how an organization manages risks and opportunities around sustainability issues.</p></li>
+                    <li><p>ESG has evolved from other historical movements that focused on health and safety issues, pollution reduction, and corporate philanthropy.</p></li>
+                    <li><p>ESG has changed how capital allocation decisions are made by many of the largest financial services firms and asset managers in the world.</p></li>
+                    <li><p>An emerging class of ESG specialists is stepping into the industry and supporting both net zero and carbon neutrality goals.</p></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-lg-6 p-2">
+                <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/AkbGz3CYvqE" title="Environmental, Social and Governance (ESG) | Overview and Framework" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center p-4">
+        <p>Source: <a href="https://corporatefinanceinstitute.com/resources/esg/esg-environmental-social-governance/" target="blank">https://corporatefinanceinstitute.com/resources/esg/esg-environmental-social-governance/</a></p>
+    </div>
+{% endblock %}

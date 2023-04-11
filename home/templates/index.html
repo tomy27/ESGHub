@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load static %}
+
+
+{% block body %}
+  {% if message %}
+    <div class="d-none" id="messageAlert">{{message}}</div>
+  {% endif %}
+
+
+  <div class="container-fluid col-xxl-8 px-4 py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="container col-10 col-sm-8 col-lg-6">
+        <img src="{% static 'pic1.jpg' %}" class="d-block mx-lg-auto img-fluid border rounded-3 shadow-lg mb-5 mt-5" alt="image" width="800" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Search ESG data</h1>
+        <p class="lead">Get ESG data of a company from multiple data providers.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <form action="{% url 'query' %}" method="get" class="w-100">
+            <div class="form-floating mb-3 text-center">
+              <input type="text" class="form-control" id="search_field" placeholder="company name or symbol" name="q" required>
+              <label for="search_field">Search for company</label>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary mb-3">Search</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block script %}
+  <script src="{% static 'scriptIndex.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
